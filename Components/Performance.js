@@ -1,37 +1,10 @@
 import React from "react";
-import { StyleSheet, View, SafeAreaView, ScrollView } from "react-native";
+import { StyleSheet, View, SafeAreaView, ScrollView, Image } from "react-native";
 import { VictoryBar, VictoryPie, VictoryChart, VictoryTheme } from "victory-native";
-
-const data = [
-    { quarter: 1, earnings: 13000 },
-    { quarter: 2, earnings: 16500 },
-    { quarter: 3, earnings: 14250 },
-    { quarter: 4, earnings: 19000 }
-];
-const piedata = [
-    { y: 55 },
-    { y: 70 },
-    { y: 95 }
-];
+import acc from '../assets/images/acc.png'
+import loss from '../assets/images/loss.png'
 
 export default class Performance extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            piedata: [
-                { y: 0 },
-                { y: 0.5 },
-                { y: 1 }
-            ]
-        }
-    }
-
-    componentDidMount() {
-        this.setState({
-            piedata: piedata
-        })
-    }
 
     render() {
         return (
@@ -39,23 +12,14 @@ export default class Performance extends React.Component {
             <SafeAreaView style={styles.container}>
                 <ScrollView style={styles.scrollView}>
                     <View style={styles.container}>
-                        <VictoryChart animate={{ onEnter: { easing: 'exp' } }} width={350} theme={VictoryTheme.material}>
-                            <VictoryBar data={data} x="quarter" y="earnings" />
-                        </VictoryChart>
+                        <Image source={acc} style={{ width: 350, height: 200 }} />
 
                     </View>
-
                     <View style={styles.container}>
-                        <VictoryPie
-                            animate={{ onEnter: { easing: 'exp' } }}
-                            data={this.state.piedata}
-                            width={250}
-                            height={250}
-                            innerRadius={50}
-                            colorScale={["tomato", "orange", "gold", "cyan", "navy"]}
-                        />
+                        <Image source={loss} style={{ width: 350, height: 200 }} />
 
                     </View>
+
 
                 </ScrollView >
             </SafeAreaView >
@@ -69,5 +33,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "#fff",
+        paddingTop: 20
     }
 });

@@ -1,5 +1,7 @@
 import React from "react";
-import { StyleSheet, View, Text, SafeAreaView, ScrollView } from "react-native";
+import { StyleSheet, View, Text, SafeAreaView, ScrollView, Image } from "react-native";
+import model from '../assets/images/Leafmodel.png'
+
 
 export default class ModelDesign extends React.Component {
     render() {
@@ -8,63 +10,41 @@ export default class ModelDesign extends React.Component {
                 <ScrollView style={styles.scrollView}>
                     <View style={styles.container}>
 
-                        <Text style={styles.heading}> Introduction </Text>
-                    <Text style={styles.paragraph} >
-                                Deep Learning is a growing field with applications that span across a number of use cases. For anyone new to this field, it is important to know and understand the different types of models used in Deep Learning.
-                                In this article, I’ll explain each of the following models:
-                    
+                        <Text style={styles.heading}> Model design</Text>
+                        <View style={styles.container}>
+                            <Image source={model} style={{ width: 390, height: 600 }} />
+
+                        </View>
+                        <Text style={styles.paragraph} >
+                            The model first consists of preprocessing block where images with variant pixel resolution are squashed to a resolution of 128*128*3.
+                            Three-channel RGB is considered to extract precise features using VGGNet
+
+
+                            In this article, I’ll explain each of the following models:
+
                         </Text>
 
 
                     </View>
 
                     <View style={styles.container}>
-
-                        <Text style={styles.heading}>
-                            Supervised Models
-                        </Text>
-                    <Text style={styles.paragraph} >
-                            Classic Neural Networks (MLP)
-                                {'\n'}
-                            Conv.. Neural Networks (CNN)
-                                {'\n'}
-                            Recurrent Neural Networks (RNN)
-                    
+                        <Text style={styles.paragraph} >
+                            The next step followed by feature extraction where the transfer of feature takes place with keenly identifying individual class.
+                            As these images are very similar to each peculiar image kind fine-grained recognition is a challenging task. But, carefully tuning and additional training of these transferred features from VGGNet can be adaptable of our problem statement. The domain adaptability of these VGGNet not only gave effective recognition for fine-grained varieties but also gave significant outcomes.
                         </Text>
 
 
                     </View>
 
                     <View style={styles.container}>
-
-                        <Text style={styles.heading}>
-                            Unsupervised Models
+                        <Text style={styles.paragraph} >
+                            Followed by feature extraction we have series of Dense layers for classifying these extracted features. But, between these dense layers, a block of dropout and batch normalization layers are included to obtain optimal regularization for the designed model.
+                            These models obtained on par results when compared to previous literature.
                         </Text>
-                    <Text style={styles.paragraph} >
-                            Self-Organizing Maps (SOMs)
-                            Boltzmann Machines
-                            AutoEncoders                    
-                    </Text>
+
 
                     </View>
 
-                    <View style={styles.container}>
-
-                        <Text style={styles.heading}>
-                         Supervised vs Unsupervised Models
-                        </Text>
-                    <Text style={styles.paragraph} >
-                         There are a number of features that distinguish the two, but the most integral 
-                         point of difference is in how these models are trained. While supervised models
-                         are trained through examples of a particular set of data, unsupervised models are
-                         only given input data and don’t have a set outcome they can learn from. So that
-                         y-column that we’re always trying to predict is not there in an unsupervised model.
-                         While supervised models have tasks such as regression and classification and will
-                         produce a formula, unsupervised models have clustering and association rule learning.                    
-                    </Text>
-
-
-                    </View>
 
                 </ScrollView>
             </SafeAreaView>

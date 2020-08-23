@@ -8,36 +8,25 @@ export default class Trail extends React.Component {
                 <ScrollView style={styles.scrollView}>
                     <View style={styles.container}>
 
-                        <Text style={styles.question}>Q: This is the First Question?</Text>
-                        <Text style={styles.answer} >Ans: here Is the answer for the question</Text>
+                        <Text style={styles.question}>Q: Is there any source to check or download the train-test configurations regarding the designed model?</Text>
+                        <Text style={styles.answer} >Ans: Yes, plant-village database is freely available as an opensource. For some samples, the purpose of testing, data is available at:
+                        <Text style={{ color: 'blue' }}
+                                onPress={() => Linking.openURL(' https://drive.google.com/drive/folders/15DAXlmpoIqhsoIxdDk8w-QB_8AxQuKO2?usp=sharing')}>
+                                Here
+                        </Text>
+                        </Text>
 
                     </View>
 
                     <View style={styles.container}>
 
-                        <Text style={styles.question}>Q: This is the First Question?</Text>
-                        <Text style={styles.answer} >Ans: here Is the answer for the question</Text>
+                        <Text style={styles.question}>Q: Why is it consuming more time to predict a high-resolution image( greater than 128x128)?</Text>
+                        <Text style={styles.answer} >Ans: The designed model was trained on 128x128 pixel resolution. Further, the present model is an intermediate model, not yet optimized fully. So, such issues can be fixed further.</Text>
 
 
 
                     </View>
 
-                    <View style={styles.container}>
-
-                        <Text style={styles.question}>Q: This is the First Question?</Text>
-                        <Text style={styles.answer} >Ans: here Is the answer for the question</Text>
-
-
-
-                    </View>
-
-                    <View style={styles.container}>
-
-                        <Text style={styles.question}>Q: This is the First Question?</Text>
-                        <Text style={styles.answer} >Ans: here Is the answer for the question</Text>
-
-
-                    </View>
 
                 </ScrollView>
             </SafeAreaView>

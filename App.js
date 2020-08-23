@@ -11,22 +11,25 @@ import ModelDesign from './Components/ModelDesign';
 import Performance from './Components/Performance';
 import Statistics from './Components/Statistics';
 import FAQ from './Components/FAQ';
+// import PhotoPickerScreen from './Components/Cameracomp';
+import ImageScreen from './Components/ImageScreen';
+import ResultScreen from './Components/ResultScreen';
 
 
 const Tab = createBottomTabNavigator();
-
 const Trailstack = createStackNavigator();
 const ModelDesignstack = createStackNavigator();
 const Performancestack = createStackNavigator();
 const Statisticsstack = createStackNavigator();
 const FAQstack = createStackNavigator();
 
+
 function TrailScreen() {
   return (
     <Trailstack.Navigator>
-      <Trailstack.Screen name="Trail" component={Trail}
+      <Trailstack.Screen name="Trailstack" component={Trail}
         options={{
-          title: 'MalariaApp',
+          title: 'Leaf-Health',
           headerStyle: {
             backgroundColor: '#25CCF7',
           },
@@ -40,6 +43,10 @@ function TrailScreen() {
 
           },
         }} />
+      <Trailstack.Screen name="HomeScreen" component={ImageScreen} />
+      <Trailstack.Screen name="ResultScreen" component={ResultScreen} />
+
+
     </Trailstack.Navigator>
   );
 }
@@ -49,7 +56,7 @@ function ModelDesignScreen() {
     <ModelDesignstack.Navigator>
       <ModelDesignstack.Screen name="Trail" component={ModelDesign}
         options={{
-          title: 'MalariaApp',
+          title: 'Leaf-Health',
           headerStyle: {
             backgroundColor: '#25CCF7',
           },
@@ -71,7 +78,7 @@ function PerformanceScreen() {
     <Performancestack.Navigator>
       <Performancestack.Screen name="Trail" component={Performance}
         options={{
-          title: 'MalariaApp',
+          title: 'Leaf-Health',
           headerStyle: {
             backgroundColor: '#25CCF7',
           },
@@ -93,7 +100,7 @@ function StatisticsScreen() {
     <Statisticsstack.Navigator>
       <Statisticsstack.Screen name="Trail" component={Statistics}
         options={{
-          title: 'MalariaApp',
+          title: 'Leaf-Health',
           headerStyle: {
             backgroundColor: '#25CCF7',
           },
@@ -115,7 +122,7 @@ function FAQScreen() {
     <FAQstack.Navigator>
       <FAQstack.Screen name="Trail" component={FAQ}
         options={{
-          title: 'MalariaApp',
+          title: 'Leaf-Health',
           headerStyle: {
             backgroundColor: '#25CCF7',
           },
@@ -146,7 +153,7 @@ function MyTabs() {
         name="Trail"
         component={TrailScreen}
         options={{
-          title: "MalariaApp",
+          title: "Leaf-Health",
           tabBarLabel: 'Trail',
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="iconfontdesktop" size={28} color={color} />
@@ -157,7 +164,7 @@ function MyTabs() {
         name="ModelDesign"
         component={ModelDesignScreen}
         options={{
-          title: "MalariaApp",
+          title: "Leaf-Health",
           tabBarLabel: 'ModelDesign',
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="codesquareo" size={28} color={color} />
@@ -168,7 +175,7 @@ function MyTabs() {
         name="Performance"
         component={PerformanceScreen}
         options={{
-          title: "MalariaApp",
+          title: "Leaf-Health",
           tabBarLabel: 'Performance',
           tabBarIcon: ({ color, size }) => (
             <Octicons name="server" size={28} color={color} />
@@ -179,7 +186,7 @@ function MyTabs() {
         name="Statistics"
         component={StatisticsScreen}
         options={{
-          title: "MalariaApp",
+          title: "Leaf-Health",
           tabBarLabel: 'Statistics',
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="barchart" size={28} color={color} />
@@ -190,7 +197,7 @@ function MyTabs() {
         name="FAQ"
         component={FAQScreen}
         options={{
-          title: "MalariaApp",
+          title: "Leaf-Health",
           tabBarLabel: 'FAQ',
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="questioncircle" size={28} color={color} />

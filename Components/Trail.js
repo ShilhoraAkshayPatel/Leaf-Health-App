@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Button, Image, View, Text } from 'react-native';
+import { Button, Image, View, Text, TouchableOpacity, } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
-import axios from 'axios';
+import { AntDesign } from '@expo/vector-icons';
 
 export default class Trail extends React.Component {
 
@@ -13,6 +13,7 @@ export default class Trail extends React.Component {
         this.state = {
             image: null,
             result: null,
+            hasCameraPermission: null,
             message: {
                 image: null,
             },
@@ -28,14 +29,24 @@ export default class Trail extends React.Component {
 
         return (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Button title="Pick an image from camera roll" onPress={this._pickImage} />
-                {image &&
-                    <>
-                        <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
-                        <Button title="Pedict" onPress={this.handlebutton.bind(this)} />
-                    </>
-                }
-                {result && <Text>{result}</Text>}
+
+                <TouchableOpacity
+                    onPress={this._pickImage}
+                    style={{ backgroundColor: '#67E6DC', width: "90%", height: "30%", marginTop: 10 }}>
+                    <Text style={{ fontSize: 20, paddingTop: 40, textAlign: 'center', color: '#fff' }}>
+                        <AntDesign name="upload" size={94} color="black" />
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={this._capture}
+                    style={{ backgroundColor: '#67E6DC', width: "90%", height: "30%", marginTop: 10 }}>
+                    <Text style={{ fontSize: 20, paddingTop: 40, textAlign: 'center', color: '#fff' }}>
+                        <AntDesign name="camerao" size={94} color="black" />
+                    </Text>
+                </TouchableOpacity>
+
+
+
             </View>
         );
     }
@@ -46,6 +57,7 @@ export default class Trail extends React.Component {
         this.getPermissionAsync();
     }
 
+
     getPermissionAsync = async () => {
         if (Constants.platform.ios) {
             const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
@@ -55,41 +67,13 @@ export default class Trail extends React.Component {
         }
     };
 
-    async handlebutton() {
-        const image64 = this.state.message
-        const data = JSON.stringify(
-            image64
-        )
-
-        axios({
-            method: 'post',
-            url: 'https://malareaapi333.herokuapp.com/api/predict',
-            data: data,
-            headers: { 'Content-Type': 'application/json' }
-        })
-            .then(function (response) {
-                //handle success
-                const result = response.data
-                return result
-
-            }).then(result => {
-                this.setState({
-                    result: result
-                })
-            })
-            .catch(function (error) {
-                //handle error
-                console.log(error);
-            });
-
-    }
 
 
 
     _pickImage = async () => {
         try {
             let result = await ImagePicker.launchImageLibraryAsync({
-                mediaTypes: ImagePicker.MediaTypeOptions.All,
+                mediaTypes: ImagePicker.MediaTypeOptions.Images,
                 allowsEditing: false,
                 aspect: [4, 3],
                 quality: 1,
@@ -99,9 +83,41 @@ export default class Trail extends React.Component {
             if (!result.cancelled) {
                 this.setState({ image: result.uri, message: { image: result.base64 } });
 
+                this.props.navigation.navigate('Trail', {
+                    screen: 'HomeScreen',
+                    initial: false,
+                    params: { state: this.state },
+                });
+                // console.log(this.state)
             }
 
 
+        } catch (E) {
+            console.log(E);
+        }
+    };
+
+    _capture = async () => {
+        try {
+            let result = await ImagePicker.launchCameraAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.Images,
+                base64: true,
+                allowsEditing: true,
+                aspect: [4, 3],
+                quality: 1,
+            });
+            if (!result.cancelled) {
+                this.setState({ image: result.uri, message: { image: result.base64 } });
+
+                this.props.navigation.navigate('Trail', {
+                    screen: 'HomeScreen',
+                    initial: false,
+                    params: { state: this.state },
+                });
+                // console.log(this.state)
+            }
+
+            console.log(result);
         } catch (E) {
             console.log(E);
         }
